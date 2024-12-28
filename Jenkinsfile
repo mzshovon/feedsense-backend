@@ -41,7 +41,7 @@ pipeline {
                                 withCredentials([usernamePassword(credentialsId: 'feedsense-portal-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                                     sh """
                                         sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /home/pet-projects/laravel11;docker compose up -d"
-                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /home/pet-projects/laravel11;docker compose exec php chmod -Rf 777 storage vendor"
+                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /home/pet-projects/laravel11;docker compose exec php chmod -Rf 777 storage"
                                         sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /home/pet-projects/laravel11;docker compose exec php chmod 400 .env"
                                     """
                                 }
