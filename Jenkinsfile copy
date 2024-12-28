@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DEPLOY_HOST = "103.138.150.86"
+        DEPLOY_HOST = "server"
         BUILD_FOR = "production"
     }
 
@@ -12,7 +12,7 @@ pipeline {
                 axes {
                     axis {
                         name 'SERVERS'
-                        values '103.138.150.86'
+                        values 'server'
                     }
                 }
 
@@ -21,7 +21,7 @@ pipeline {
                         steps {
                             git branch: 'master',
                                 credentialsId: 'github-pookie',
-                                url: 'https://gitlab.banglalink.net/eb-selfcare/backend.git'
+                                url: 'repo'
                         }
                     }
                     stage('Approve Deployment') {
@@ -40,9 +40,9 @@ pipeline {
                             script {
                                 withCredentials([usernamePassword(credentialsId: 'feedsense-portal-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                                     sh """
-                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /home/pet-projects/laravel11;docker compose up -d"
-                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /home/pet-projects/laravel11;docker compose exec php chmod -Rf 777 storage vendor"
-                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /home/pet-projects/laravel11;docker compose exec php chmod 400 .env"
+                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /path;docker compose up -d"
+                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /path;docker compose exec php chmod -Rf 777 storage vendor"
+                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /path;docker compose exec php chmod 400 .env"
                                     """
                                 }
                             }
@@ -54,9 +54,9 @@ pipeline {
                             script {
                                 withCredentials([usernamePassword(credentialsId: 'feedsense-portal-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                                     sh """
-                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /home/pet-projects/laravel11;docker compose exec php composer install"
-                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /home/pet-projects/laravel11;docker compose exec php php artisan config:clear"
-                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /home/pet-projects/laravel11;docker compose exec php php artisan optimize"
+                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /path;docker compose exec php composer install"
+                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /path;docker compose exec php php artisan config:clear"
+                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /path;docker compose exec php php artisan optimize"
                                     """
                                 }
                             }
@@ -69,8 +69,8 @@ pipeline {
                             script {
                                 withCredentials([usernamePassword(credentialsId: 'feedsense-portal-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                                     sh """
-                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /home/pet-projects/laravel11;docker compose exec php php artisan migrate --force"
-                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /home/pet-projects/laravel11;docker compose exec php php artisan db:seed --force"
+                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /path;docker compose exec php php artisan migrate --force"
+                                        sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /path;docker compose exec php php artisan db:seed --force"
                                     """
                                 }
                             }
