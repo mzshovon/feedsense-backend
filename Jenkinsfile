@@ -21,7 +21,7 @@ pipeline {
                         steps {
                             git branch: 'master',
                                 credentialsId: 'git-pookie',
-                                url: 'https://gitlab.banglalink.net/eb-selfcare/backend.git'
+                                url: 'https://github.com/mzshovon/feedsense-backend.git'
                         }
                     }
                     stage('Approve Deployment') {
