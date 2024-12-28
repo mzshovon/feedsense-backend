@@ -20,7 +20,7 @@ pipeline {
                     stage('Pull Code') {
                         steps {
                             git branch: 'master',
-                                credentialsId: 'github-pookie',
+                                credentialsId: 'git-pookie',
                                 url: 'https://gitlab.banglalink.net/eb-selfcare/backend.git'
                         }
                     }
