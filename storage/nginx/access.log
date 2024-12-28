@@ -1,0 +1,8 @@
+172.18.0.1 - [28/Dec/2024:05:14:05 +0000] "GET /api HTTP/1.1" 404 125 "-" "PostmanRuntime/7.43.0" - - 0.000 287888095fe4cafc65d7803af94eb8a6 -
+172.18.0.1 - [28/Dec/2024:05:14:25 +0000] "GET /api HTTP/1.1" 404 125 "-" "PostmanRuntime/7.43.0" - - 0.000 e31956db0ab457de0192ae2a43bc1f03 -
+172.18.0.1 - [28/Dec/2024:05:15:10 +0000] "GET /api HTTP/1.1" 404 125 "-" "PostmanRuntime/7.43.0" - - 0.000 58fae7bb28892197c41e3ac62df4cb56 -
+172.18.0.1 - [28/Dec/2024:05:17:03 +0000] "GET /api HTTP/1.1" 404 125 "-" "PostmanRuntime/7.43.0" - - 0.000 6e45821322c1d6c977868f2610362922 -
+172.18.0.1 - [28/Dec/2024:05:17:04 +0000] "GET /api HTTP/1.1" 404 125 "-" "PostmanRuntime/7.43.0" - - 0.000 0b2fcb24604e153d413255fc1be42327 -
+172.18.0.1 - [28/Dec/2024:05:17:05 +0000] "GET /api HTTP/1.1" 404 125 "-" "PostmanRuntime/7.43.0" - - 0.000 8d0887fa0d7336c9c99a3cffef89f51d -
+172.18.0.1 - [28/Dec/2024:05:18:03 +0000] "GET /api HTTP/1.1" 301 169 "-" "PostmanRuntime/7.43.0" - - 0.000 b862736cba2c76a90e51596dcfd449f1 -
+172.18.0.1 - [28/Dec/2024:05:18:03 +0000] "GET /api/ HTTP/1.1" 200 55 "http://localhost:8090/api" "PostmanRuntime/7.43.0" 172.18.0.3:9000 0.070 0.070 f2dc7affcb60140c3af9a1cadc5a66cb -
