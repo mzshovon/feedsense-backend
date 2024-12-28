@@ -38,6 +38,8 @@ pipeline {
                     stage('Start Container') {
                         steps {
                             script {
+                                sh 'apt-get update && apt-get install -y sshpass'
+
                                 withCredentials([usernamePassword(credentialsId: 'feedsense-portal-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                                     sh """
                                         sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${USERNAME}@${SERVERS} "cd /home/pet-projects/laravel11;docker compose up -d"
